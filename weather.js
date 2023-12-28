@@ -3,7 +3,7 @@ import axios from "axios"
 export function getWeather(lat, lon, timezone) {
     return axios
     .get(
-        "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&temperature_unit=fahrenheit&windspeed_unit=mph&precipitation_unit=inch&timeformat=unixtime",
+        "https://api.open-meteo.com/v1/forecast?hourly=temperature_2m,apparent_temperature,precipitation,weathercode,windspeed_10m&daily=weathercode,temperature_2m_max,temperature_2m_min,apparent_temperature_max,apparent_temperature_min,precipitation_sum&current_weather=true&timeformat=unixtime",
         {
             params: {
                 latitude: lat,
@@ -64,7 +64,7 @@ function parseHourlyWeather({ hourly, current_weather }) {
             iconCode: hourly.weathercode[index],
             temp: Math.round(hourly.temperature_2m[index]),
             feelsLike: Math.round(hourly.apparent_temperature[index]),
-            windSpeed: Math.round(hourly.windSpeed_10m[index]),
+            windSpeed: Math.round(hourly.windspeed_10m[index]),
             precip: Math.round(hourly.precipitation[index] * 100) / 100,
         }
     })
